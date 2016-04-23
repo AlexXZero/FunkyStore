@@ -1,4 +1,4 @@
-![FunkyStore](https://raw.githubusercontent.com/MEDVEDx64/FunkyStore/master/storage/funky.png)
+![FunkyStore](https://raw.githubusercontent.com/AlexXZero/FunkyStore/master/storage/funky.png)
 
 AlexX's server-specific fork of FunkyStore, formelly known as *PunkyStore*.
 
