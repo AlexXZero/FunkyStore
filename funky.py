@@ -27,12 +27,12 @@ HOST = config['host']
 # HOST += ':' + str(PORT)
 db = None
 
-COPY = '2015 MEDVEDx64. Thanks to dmitro.'
+COPY = '2015-2016 AlexX.'
 
 class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 	def html_start(self):
 		self.wfile.write(
-			'<html><head><title>Funky Store</title><link rel="stylesheet" type="text/css" href="storage/style.css" />'
+			'<html><head><title>Punky Store</title><link rel="stylesheet" type="text/css" href="storage/style.css" />'
 			+ '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>')
 		self.wfile.write('<body><center>\n')
 
@@ -76,7 +76,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 				u = get_user_by_cookie(self.headers['cookie'])
 
 		self.wfile.write('<a href="/"><img style="margin: 8px" src="storage/funky.png"></img></a><br>\n'
-			+ '<i style="font-size: 7pt">Funky Store &copy; ' + COPY + '<br>\n')
+			+ '<i style="font-size: 7pt">Punky Store &copy; ' + COPY + '<br>\n')
 		if u:
 			motd = db['motd'].find().sort('timestamp', -1).limit(1)
 			if motd.count():
@@ -89,7 +89,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			self.wfile.write('<i>Welcome, Stranger!</i>\n')
 			return
 
-		self.wfile.write('<b>Account</b>: ' + u + ', <b>Balance:</b> ' + str(money.get_balance(db, u)) + 'f\n')
+		self.wfile.write('<b>Account</b>: ' + u + ', <b>Balance:</b> ' + str(money.get_balance(db, u)) + 'pn\n')
 		self.wfile.write(' (<a href="/logout">Logout</a>) | <a style="color: #ef8" '
 			+ 'href="/get-to-the-kernel"<a>Get to the Kernel!</a><hr>\n')
 		self.html_main_menu(u)
@@ -162,7 +162,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 						self.wfile.write('font-size: 9pt">(' + str(i['left']) + ')</x>')
 					price = 'Free'
 					if i['price']:
-						price = str(i['price']) + 'f'
+						price = str(i['price']) + 'pn'
 					self.wfile.write(' &ndash; <b>' + price + '</b></div>')
 					self.wfile.write('<div class="inner inner-inputs"><input type="text" size="4"'
 						+ 'name="amount" value="1"> <input type="submit" value="Buy"></div></form>\n')
@@ -184,7 +184,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 										 + ' <input type="submit" value="Update"></form><x style="color: #335">[' + i[
 											 'item_id'] + ']</x>' \
 										 + ' <a href="/item?do=delete&itemid=' + i['item_id'] \
-										 + '" style="color: #e44" method="post">Delete</a>\n')
+										 + '" style="color: #711" method="post">Delete</a>\n')
 					self.html_block_end()
 
 				if is_admin:
@@ -256,14 +256,14 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 						.skip(page * PAGESIZE).limit(PAGESIZE)
 
 					for d in c:
-						self.wfile.write('<b>' + str(d['amount']) + 'f</b> from <b>' + d['source'] + '</b> to <b>')
+						self.wfile.write('<b>' + str(d['amount']) + 'pn</b> from <b>' + d['source'] + '</b> to <b>')
 						self.wfile.write(d['destination'] + '</b> at <i>' + str(d['timestamp']) + '</i><br>\n')
 					self.wfile.write('</div>\n')
 
 				self.html_block_end()
 
 			else:
-				self.wfile.write('Transfer some Funks to another account\n')
+				self.wfile.write('Transfer some Punks to another account\n')
 				self.wfile.write('<form name="transfer" method="post" action="transfer">')
 				self.wfile.write('Target account: <input type="text" size="60" name="destination">')
 				self.wfile.write('<br>Amount: <input name="amount" type="text" size="20"><br>')
@@ -318,7 +318,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 							break
 
 				money.transfer(db, '__RESERVE__', username, reward)
-				self.html_redirect('/sell?m=You have earned ' + str(reward) + ' funks.')
+				self.html_redirect('/sell?m=You have earned ' + str(reward) + ' punks.')
 
 			markets = db['markets'].find().sort('text', 1)
 			for e in markets:
@@ -340,9 +340,9 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 					if big: self.wfile.write('<b>')
 					if 'reward_low' in e['accept'][a]:
 						self.wfile.write(a + ' <b style="color: #438">(from ' + str(e['accept'][a]['reward_low'])
-							+ 'f to ' + str(e['accept'][a]['reward']) + 'f)</b>')
+							+ 'pn to ' + str(e['accept'][a]['reward']) + 'pn)</b>')
 					else:
-						self.wfile.write(a + ' (' + str(e['accept'][a]['reward']) + 'f)')
+						self.wfile.write(a + ' (' + str(e['accept'][a]['reward']) + 'pn)')
 					if big: self.wfile.write('</b>')
 					self.wfile.write('<br>')
 				self.wfile.write('</x>')
@@ -372,7 +372,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			for c in db[magic.COLLECTION_NAME].find({'owner': username, 'left': {'$ne': 0}}).sort('value'):
 				has_codes = True
 				self.wfile.write('<tr><td><b>' + magic.build_code(c['head'], c['ident'], c['data'])
-					+ '</b></td><td><i style="color: #889">' + str(c['value']) + 'f</i></td></tr>\n')
+					+ '</b></td><td><i style="color: #889">' + str(c['value']) + 'pn</i></td></tr>\n')
 
 			if not has_codes:
 				self.wfile.write("You didn't bought any vouchers yet.")
@@ -584,7 +584,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 								flags += ' ' + f
 							flags = flags.strip()
 							self.wfile.write('<a href="/admin?go=accounts&action=delete&login=' + acc['login']
-											 + '" style="color: #e44">Delete</a>')
+											 + '" style="color: #711">Delete</a>')
 							self.wfile.write('<br><form name="edit_account" method="post" action="/admin'
 								+ '?go=accounts&action=update&login=' + acc['login'] + '">'
 								+ 'Nickname: <input name="nickname" type="text" size="32" value="'
@@ -999,7 +999,7 @@ def cook_password(password, login):
 
 if __name__ == '__main__':
 	dbclient = pymongo.MongoClient(config['dbUri'])
-	db = dbclient.funky
+	db = dbclient.punky
 	rcfg = config['rconServer']
 	try:
 		httpd = SocketServer.TCPServer(("", PORT), FunkyHTTPRequestHandler)

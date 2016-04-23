@@ -5,19 +5,19 @@ body
 	margin-left: 0;
 	margin-right: 0;
 
-	background: url("back.jpg") no-repeat center center fixed; 
+	background: url("back.webp") no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 	font-family: arial;
-	color: #e8f0ff;
+	color: #fff;
 	text-align: center;
 }
 
-a:link { color: #e8d0ff; }
+a:link { color: #ffd0e8; }
 
-a:visited { color: #e8d0ff; }
+a:visited { color: #ffd0e8; }
 
 a:hover { color: #e8d0dd; }
 
@@ -26,7 +26,7 @@ div
 	margin: 0;
 	color: rgba(24, 32, 48, 0.75);
 	padding: 4px 6px 4px 6px;
-	background: rgba(222, 228, 244, 0.5);
+	background: rgba(244, 228, 244, 0.5);
 	border-style: none;
 	/* border-radius: 10px; */
 }
@@ -34,7 +34,7 @@ div
 tiny		{ font-size: 10px; }
 tiny12		{ font-size: 12px; }
 
-div:hover { background: rgba(222, 228, 244, 1); }
+div:hover { background: rgba(244, 228, 224, 1); }
 
 div.box {
 	border-style: hidden; background-color: transparent;
@@ -125,11 +125,11 @@ div form {
 	min-height: 20px;
 	padding: 1 6px;
 	margin-top: 2px;
-	background: rgba(176, 189, 224, 0.82);
+	background: rgba(192, 189, 224, 0.82);
 	text-align: left;
 	margin-left: 100px;
 	border-radius: 10px;
-	box-shadow: rgba(65, 82, 136, 0.54) 2px 2px;
+	box-shadow: rgba(136, 82, 65, 0.54) 2px 2px;
 }
 
 #chart {

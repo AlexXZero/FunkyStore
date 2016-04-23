@@ -1,12 +1,6 @@
 ![FunkyStore](https://raw.githubusercontent.com/MEDVEDx64/FunkyStore/master/storage/funky.png)
 
-***
-*Disclaimer. This stuff may not be suitable for you, because
-it is initially were written for my own Minecraft server.
-It is quite possible that you will need to change something in the code.*
-***
-*Disclaimer #2. FunkyStore may become a reason of your Minecraft server crash.*
-***
+AlexX's server-specific fork of FunkyStore, formelly known as *PunkyStore*.
 
 This is an online in-game item store for vanilla Minecraft servers.
 It DOES NOT deals with real money, there are an internal
