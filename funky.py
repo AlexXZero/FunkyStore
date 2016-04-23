@@ -90,8 +90,7 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			return
 
 		self.wfile.write('<b>Account</b>: ' + u + ', <b>Balance:</b> ' + str(money.get_balance(db, u)) + 'pn\n')
-		self.wfile.write(' (<a href="/logout">Logout</a>) | <a style="color: #ef8" '
-			+ 'href="/get-to-the-kernel"<a>Get to the Kernel!</a><hr>\n')
+		self.wfile.write(' (<a href="/logout">Logout</a>)<hr>\n')
 		self.html_main_menu(u)
 
 		if url_query:
@@ -457,21 +456,6 @@ class FunkyHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			else:
 				self.send_error(400, 'Bad Request')
 			self.html_end()
-
-		elif url.path == '/get-to-the-kernel':
-			username = self.get_user_by_cookie()
-			u = get_user_account(username)
-			if not username or not u:
-				self.html_redirect('/')
-				return
-			if not 'nickname' in u:
-				self.html_redirect('/?m=Nickname not defined. Check you account settings.')
-				return
-			if not 'tp_kernel' in u['flags']:
-				self.html_redirect('/?m=Permission denied.')
-				return
-			rcon.teleport_to_kernel(u['nickname'])
-			self.html_redirect('/?m=Success')
 
 		elif url.path == '/magic':
 			username = self.get_user_by_cookie()
